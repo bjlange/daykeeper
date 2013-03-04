@@ -12,6 +12,9 @@
  * http://opensource.org/licenses/MIT
  * ---------------------------------- */
 
+function unschedSlideTransition(){
+
+}
 !function () {
 
   var popover;

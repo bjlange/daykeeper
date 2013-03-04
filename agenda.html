@@ -1,9 +1,18 @@
-
 <html>
   <head>
+    <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js"></script>
+    <link rel="sylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.css"/>
     <meta charset="utf-8">
     <!-- Sets initial viewport load and disables zooming  -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Set Apple icons for when prototype is saved to home screen -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
 
     <!-- Include the compiled Ratchet JS -->
     <script src="ratchet/ratchet.js"></script>
@@ -20,31 +29,30 @@
     <div class="content">
 	<ul class="list">
 	    <li>
-	    <a href="192.168.1.107:8888/detailview.html" data-transition="fade">
+	    <a href="http://192.168.1.107:8888/detailview.html" data-transition="fade">
 		11:00 - HCI meeting
 	    </a>
 	    </li>
 	    <li>
-	    <a href="192.168.1.107:8888/detailview.html" data-transition="fade">
+	    <a href="http://192.168.1.107:8888/detailview.html" data-transition="fade">
 		12:00 - Lunch
 	    </a>
 	    </li>
 	    <li>
-	    <a href="192.168.1.107:8888/detailview.html" data-transition="fade">
+	    <a href="http://192.168.1.107:8888/detailview.html" data-transition="fade">
 		2:00 - Programming Languages
 	    </a>
 	    </li>
 	    <li>
-	    <a href="192.168.1.107:8888/detailview.html" data-transition="fade">
+	    <a href="http://192.168.1.107:8888/detailview.html" data-transition="fade">
 		2:00 - slide test
 	    </a>
 	    </li>
 	</ul>
       
-    <form>
-	<input type="text" placeholder="Add Task">
-	<a class="button button-block">Add</a>
-    </form>
+	<div data-role="footer" class="ui-bar">
+	        <input type="text" onFocus = "unschedSlideTransition()" placeholder="Add Task">
+	</div>
     </div>    
   </body>
 </html>
