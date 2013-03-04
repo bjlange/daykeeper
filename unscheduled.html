@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="ratchet/ratchet.css">
+    <link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      .viewTitle {
+	  padding: 10px;
+	  font-size: 18pt;
+	  color: navy;
+      }
+      input[type="checkbox"] {
+	  -ms-transform: scale(2); /* IE */
+	  -moz-transform: scale(2); /* FF */
+	  -webkit-transform: scale(2); /* Safari and Chrome */
+	  -o-transform: scale(2); /* Opera */
+	  margin-right: 15px;
+      }
+      .hidden {
+	  display: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <script src="ratchet/ratchet.js"></script>
+    <header class="bar-title">
+      <a class="button" href="limbo.html" data-transition="slide-out">
+	Limbo <span class="count">0</span>
+      </a>
+      <h1 class="title">Daykeeper</h1>
+      <a class="button hidden" href="#">
+	Back
+      </a>
+    </header>
+    <div class="bar-standard bar-header-secondary">
+      <input style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" />
+      <a style="width: 10%;font-family:FontAwesome;" class="button">&#xf073;</a>
+    </div>
+    <div class="content">
+      <div class="viewTitle">
+	Unscheduled
+      </div>
+      <ul class="list">
+	<li>
+	  <input type="checkbox" />
+	  <a href="task_detail.html" data-transition="slide-in" style="display:inline;">
+	    Task 1
+	  </a>
+	  <span class="chevron"></span>
+	</li>
+	<li>
+	  <input type="checkbox" />
+	  <a href="task_detail.html" data-transition="slide-in" style="display:inline;">
+	    Task 2
+	  </a>
+	  <span class="chevron"></span>
+	</li>
+	<li>
+	  <input type="checkbox" />
+	  <a href="task_detail.html" data-transition="slide-in" style="display:inline;">
+	    Task 3
+	  </a>
+	  <span class="chevron"></span>
+	</li>
+      </ul>
+    </div>
+  </body>
+</html>
