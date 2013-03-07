@@ -23,12 +23,37 @@
 	Limbo <span class="count">0</span>
       </a>
       <h1 class="title">Daykeeper</h1>
-      <a class="button" href="http://192.168.1.107:8888/agenda.html">
+      <a class="button" href="/agenda.html">
 	  Done
       </a>
     </header>
     <div class="content">
-	Skeleton detail view. Content would go here      
+	<form action="doSomethingOnSubmit">
+	    <div class="input-group">
+		<div class="input-row">
+		    <label>Task name</label>
+		    <input type="text" placeholder="My Task">
+		</div>
+		<div class="input-row">
+		    <label>Start Time</label>
+		    <input type="date" name="start-time-date">
+		    <input type="time" name="start-time-time">
+		</div>
+		<div class="input-row">
+		    <label>End Time</label>
+		    <input type="date" name="end-time-date">
+		    <input type="time" name="end-time-time">
+		</div>
+		<div class="input-row">
+		    <label>Location</label>
+		    <input type="text" placeholder="123 Main St.">
+		</div>
+		<div class="input-row">
+		</div>
+	    </div>
+	    <textarea rows="5" placeholder="Additional notes"></textarea>
+	    <input type="submit" text="Submit"/>
+	</form>
       
     </div>    
   </body>
