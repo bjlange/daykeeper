@@ -6,8 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+    <script type="text/javascript">
+      Parse.initialize("Ma2oFlJurgeYxRRkoBVga7MfMLGgOlpHxARED2VR", "j3CjT3KB4G9gdWYemaPi1fiIjVbwXxGvArhs53kC"); 
+      
+      var Task = Parse.Object.extend("TasksObject");
+      var task = new Task();
+      var Todos;
+      
+      function initialize() {
+        var query = new Parse.Query(Task);
+        
+        query.find({
+          success : function(results) {
+            Todos = results;
+            for(var i=0; i<Todos.length; i++) {
+            var title = Todos[i].get("Title");
+            document.getElementById("taskList").innerHTML = "<li><input type=\"checkbox\" /> <a href=\"task_detail.html\* data-transition=\"slide-in\" style=\"display:inline;\">"+title+"</a><span class=\"chevron\"></li>";
+            }
+            alert('querying...');
+            alert(results.length);
+            alert(results[0].get("Title"));
+          },
+          error : function(error) {
+            alert("ERROR!");
+          }
+        });
+      }
+      
+      function press (e) {
+        var evt = e || window.event;
+          
+          if(evt.keyCode == 13){
+        
+            var title = document.getElementById("quickadd").value;
+            task.set("Title", title);
+            
+            task.save(null, {
+              success : function(task) {
+                alert("Task added! :)");
+              },
+              error : function(error) {
+                alert("ERROR!!");
+              }
+            });
+        }
+      }
+    </script>
   </head>
-  <body>
+  <body onload="initialize()">
     
     <script src="ratchet/ratchet.js"></script>
     <header class="bar-title">
@@ -20,14 +67,14 @@
       </a>
     </header>
     <div class="bar-standard bar-header-secondary">
-      <input style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" />
+      <input id="quickadd" style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" onKeyDown="return press (event);" />
       <a href="agenda.html" data-transition="fade" style="width: 10%;font-family:FontAwesome;" class="button">&#xf073;</a>
     </div>
     <div class="content">
       <div class="viewTitle">
 	Unscheduled
       </div>
-      <ul class="list">
+      <ul id="taskList" class="list">
 	<li>
 	  <input type="checkbox" />
 	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
