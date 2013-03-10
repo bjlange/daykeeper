@@ -20,13 +20,27 @@
         query.find({
           success : function(results) {
             Todos = results;
+	    var ul = document.getElementById("taskList");
             for(var i=0; i<Todos.length; i++) {
-            var title = Todos[i].get("Title");
-            document.getElementById("taskList").innerHTML = "<li><input type=\"checkbox\" /> <a href=\"task_detail.html\* data-transition=\"slide-in\" style=\"display:inline;\">"+title+"</a><span class=\"chevron\"></li>";
+		var title = Todos[i].get("Title");
+		var li = document.createElement('li');
+		var cb = document.createElement('input');
+		cb.setAttribute("type","checkbox");
+		var a = document.createElement('a');
+		var span = document.createElement('span');
+		span.setAttribute("class", "chevron");
+		a.href = "task_detail.html";
+		a.title = title
+		a.setAttribute("data-transition", "slide-in");
+		a.setAttribute("style","display:inline;");
+		a.appendChild(document.createTextNode(title));
+		li.appendChild(cb);
+		li.appendChild(a);
+		li.appendChild(span);
+		ul.appendChild(li);
+
+		//.innerHTML = "<li><input type=\"checkbox\" /> <a href=\"task_detail.html\* data-transition=\"slide-in\" style=\"display:inline;\">"+title+"</a><span class=\"chevron\"></li>";
             }
-            alert('querying...');
-            alert(results.length);
-            alert(results[0].get("Title"));
           },
           error : function(error) {
             alert("ERROR!");
@@ -75,27 +89,6 @@
 	Unscheduled
       </div>
       <ul id="taskList" class="list">
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 1
-	  </a>
-	  <span class="chevron"></span>
-	</li>
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 2
-	  </a>
-	  <span class="chevron"></span>
-	</li>
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 3
-	  </a>
-	  <span class="chevron"></span>
-	</li>
       </ul>
     </div>
   </body>
