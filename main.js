@@ -18,7 +18,6 @@ function masterRender() {
 		    'unscheduled.html':renderUnscheduledList};
 
     render_map[page]();
-
 }
 
 function renderAgenda() {
