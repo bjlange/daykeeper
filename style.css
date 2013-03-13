@@ -34,3 +34,10 @@ input[type="checkbox"] {
     font-weight: bold;
 
 }
+.skinny-select {
+    width: 40%;
+    margin-left: 15px;
+    background: white;
+    border: none;
+    margin-bottom: 0px;
+}

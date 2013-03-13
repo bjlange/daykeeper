@@ -16,6 +16,8 @@
     <script src="ratchet/ratchet.js"></script>
     <!-- Include the compiled Ratchet CSS -->
     <link rel="stylesheet" href="ratchet/ratchet.css">
+
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header class="bar-title">
@@ -35,12 +37,20 @@
 		  Find a free time
 		</a>
 		<div class="input-row">
-		    <label>Start Time</label>
+		  <label>Start Time</label>
 		    <input type="datetime" name="start-time">
 		</div>
 		<div class="input-row">
-		    <label>End Time</label>
-		    <input type="datetime" name="end-time">
+		    <label>Duration</label>
+		    <select class="skinny-select">
+		      <option value="0">None</option>
+		      <option value="10">10 minutes</option>
+		      <option value="20">20 minutes</option>
+		      <option value="30">30 minutes</option>
+		      <option value="60">1 hour</option>
+		      <option value="120">2 hours</option>
+		      <option value="180">3 hours</option>
+		    </select>
 		</div>
 		<div class="input-row">
 		    <label>Location</label>
