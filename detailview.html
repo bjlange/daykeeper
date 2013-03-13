@@ -12,11 +12,17 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type = "text/javascript"/>
+    <script type = "text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
     <!-- Include the compiled Ratchet JS -->
     <script src="ratchet/ratchet.js"></script>
     <!-- Include the compiled Ratchet CSS -->
     <link rel="stylesheet" href="ratchet/ratchet.css">
+    <script>
+	var id = getParameterByName("objectId");
+	var startT = document.getElementById("
+
+    </script>
+	
   </head>
   <body>
     <header class="bar-title">
@@ -30,14 +36,14 @@
 	    <div class="input-group">
 		<div class="input-row">
 		    <label>Task name</label>
-		    <input type="text" placeholder="My Task">
+		    <input id ="taskName" type="text" placeholder="My Task">
 		</div>
 		<a href="scheduler.html" class="button-positive button-block" style="margin:5px;">
 		  Find a free time
 		</a>
 		<div class="input-row">
 		    <label>Start Time</label>
-		    <input type="datetime" name="start-time">
+		    <input id="startTime" type="datetime" name="start-time">
 		</div>
 		<div class="input-row">
 		    <label>End Time</label>
