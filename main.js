@@ -70,7 +70,7 @@ function renderLimbo() {
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
-		a.href = "detailview.html";
+		a.href = "detailview.html?objectId=" + Todos[i].id;
 		a.title = title
 		a.setAttribute("data-transition", "slide-in");
 		a.setAttribute("style","display:inline;");
@@ -115,7 +115,7 @@ function renderUnscheduledList() {
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
-		a.href = "detailview.html";
+		a.href = "detailview.html?objectID="+Todos[i].id;
 		a.title = title
 		a.setAttribute("data-transition", "slide-in");
 		a.setAttribute("style","display:inline;");
@@ -133,4 +133,15 @@ function renderUnscheduledList() {
 	}
     });
     
+}
+
+function getParameterByName(name){
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.search);
+    if(results == null)
+	return "";
+    else
+	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
