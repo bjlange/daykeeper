@@ -137,6 +137,7 @@ function renderLimbo() {
 		var li = document.createElement('li');
 		var cb = document.createElement('input');
 		cb.setAttribute("type","checkbox");
+		cb.setAttribute("data-id",Todos[i].id);
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
@@ -203,6 +204,7 @@ function renderUnscheduledList() {
 		var li = document.createElement('li');
 		var cb = document.createElement('input');
 		cb.setAttribute("type","checkbox");
+		cb.setAttribute("data-id",Todos[i].id);
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
@@ -216,6 +218,8 @@ function renderUnscheduledList() {
 		li.appendChild(span);
 		ul.appendChild(li);
 		
+		cb.addEventListener('change',completeTask);
+		
 		//.innerHTML = "<li><input type=\"checkbox\" /> <a href=\"task_detail.html\* data-transition=\"slide-in\" style=\"display:inline;\">"+title+"</a><span class=\"chevron\"></li>";
 	    }
 	},
@@ -226,6 +230,30 @@ function renderUnscheduledList() {
     
 }
 
+function completeTask(){
+    var id = this.getAttribute("data-id");
+    
+    var query = new Parse.Query(Task);
+    query.get(id, {    
+	success : function(task) {
+	    task.set("completed",true);
+	    task.save(	
+		{success : function(task) {
+		    history.go(0);
+		},
+		 error : function(error) {
+		     alert("ERROR! "+error.message);
+		 }
+		});
+
+	},
+	error : function(error) {
+	    alert("ERROR! "+error.message);
+	}
+    });
+}
+	     
+	      
 function getParameterByName(name){
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regexS = "[\\?&]" + name + "=([^&#]*)";
