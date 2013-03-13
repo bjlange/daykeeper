@@ -95,7 +95,8 @@ function renderLimbo() {
 function renderUnscheduledList() {
     var query = new Parse.Query(Task);
     
-    query.descending("createdAt")
+    query.descending("createdAt");
+    query.doesNotExist("date");
     query.find({
 	success : function(results) {
 	    Todos = results;
