@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+    <script src="ratchet/ratchet.js"></script>
+    <script type="text/javascript" src="main.js"></script>
   </head>
   <body>
-    <script src="ratchet/ratchet.js"></script>
     <header class="bar-title">
       <h1 class="title">Daykeeper</h1>
       <a class="button" onclick="history.back()" data-transition="slide-in">
@@ -20,28 +22,7 @@
       <div class="viewTitle">
 	Limbo
       </div>
-      <ul class="list">
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 1
-	  </a>
-	  <span class="chevron"></span>
-	</li>
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 2
-	  </a>
-	  <span class="chevron"></span>
-	</li>
-	<li>
-	  <input type="checkbox" />
-	  <a href="detailview.html" data-transition="slide-in" style="display:inline;">
-	    Task 3
-	  </a>
-	  <span class="chevron"></span>
-	</li>
+      <ul id="limboList" class="list">
       </ul>
     </div>
   </body>
