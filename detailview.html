@@ -12,15 +12,14 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
 
-    <script type = "text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+    <script src="main.js"/>
     <!-- Include the compiled Ratchet JS -->
     <script src="ratchet/ratchet.js"></script>
     <!-- Include the compiled Ratchet CSS -->
     <link rel="stylesheet" href="ratchet/ratchet.css">
     <script>
-	var id = getParameterByName("objectId");
-	var startT = document.getElementById("
-
+	renderDetailView();
     </script>
 	
   </head>
@@ -47,7 +46,7 @@
 		</div>
 		<div class="input-row">
 		    <label>Duration</label>
-		    <select class="skinny-select">
+		    <select id="duration" class="skinny-select">
 		      <option value="0">None</option>
 		      <option value="10">10 minutes</option>
 		      <option value="20">20 minutes</option>
@@ -59,12 +58,12 @@
 		</div>
 		<div class="input-row">
 		    <label>Location</label>
-		    <input type="text" placeholder="123 Main St.">
+		    <input id="location" type="text" placeholder="123 Main St.">
 		</div>
 		<div class="input-row">
 		</div>
 	    </div>
-	    <textarea rows="5" placeholder="Additional notes"></textarea>
+	    <textarea id="notes" rows="5" placeholder="Additional notes"></textarea>
 	    <input class="button-block" type="submit" style="width:100%;" value="Save Changes"/>
 	    <a class="button-negative button-block">Delete this task</a>
 	</form>

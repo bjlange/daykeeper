@@ -23,7 +23,8 @@ function masterRender() {
     var page = window.location.pathname.replace('/','');
     var render_map={'agenda.html':renderAgenda,
 		    'unscheduled.html':renderUnscheduledList,
-		    'limbo.html':renderLimbo};
+		    'limbo.html':renderLimbo,
+		    'detailview.html':renderDetailView};
 
     render_map[page]();
 }
@@ -87,9 +88,29 @@ function renderLimbo() {
 	    alert("ERROR!");
 	}
     });
-    
-    
+}
 
+function renderDetailView() {
+    var id = getParameterByName("objectId");
+    var query = new Parse.Query(Task);
+    query.get(id, {    
+	success : function(results) {
+	    var t = results;
+	    var startTime = document.getElementById("startTime");
+	    var taskName = document.getElementById("taskName");
+	    var duration = document.getElementById("duration");
+	    var mLocation = document.getElementById("location");
+	    var notes = document.getElementById("notes");
+	    taskName.value = t.get("Title");
+	    startTime.value = t.get("date").toISOString();
+	    duration.value = t.get("duration");
+	    mLocation.value = t.get("location");
+	    notes.value = t.get("notes");
+	},
+	error : function(error) {
+	    alert("ERROR! "+error.message);
+	}
+    });
 }
 
 function renderUnscheduledList() {
@@ -115,7 +136,7 @@ function renderUnscheduledList() {
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
-		a.href = "detailview.html?objectID="+Todos[i].id;
+		a.href = "detailview.html?objectId="+Todos[i].id;
 		a.title = title
 		a.setAttribute("data-transition", "slide-in");
 		a.setAttribute("style","display:inline;");
