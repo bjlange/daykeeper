@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="ratchet/ratchet.css">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+    <script type="text/javascript" src="moment.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
   </head>
@@ -30,32 +31,12 @@
       <h1 class="title">Daykeeper</h1>
     </header>
     <div class="content">
-	<ul class="list">
-	    <li>
-	    <a href="/detailview.html" data-transition="fade">
-		11:00 - HCI meeting
-	    </a>
-	    </li>
-	    <li>
-	    <a href="/detailview.html" data-transition="fade">
-		12:00 - Lunch
-	    </a>
-	    </li>
-	    <li>
-	    <a href="/detailview.html" data-transition="fade">
-		2:00 - Programming Languages
-	    </a>
-	    </li>
-	    <li>
-	    <a href="/detailview.html" data-transition="fade">
-		2:00 - slide test
-	    </a>
-	    </li>
-	</ul>
+      <ul id="agendaList" class="list">
+	      </ul>
       
-    <header class="bar-footer">
-      <input style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" />
-      <a href="unscheduled.html" data-transition="fade" style="width: 10%;font-family:FontAwesome;" class="button">&#xf0ca;</a>
+      <header class="bar-footer">
+	<input style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" />
+	<a href="unscheduled.html" data-transition="fade" style="width: 10%;font-family:FontAwesome;" class="button">&#xf0ca;</a>
     </header>
 	<!--<div data-role="footer" class="ui-bar">
 	        <input type="text" onFocus = "unschedSlideTransition()" placeholder="Add Task">
