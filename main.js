@@ -26,7 +26,8 @@ function renderAgenda() {
 
 function renderUnscheduledList() {
     var query = new Parse.Query(Task);
-	  
+    
+    query.descending("createdAt")
     query.find({
 	success : function(results) {
 	    Todos = results;
