@@ -102,13 +102,54 @@ function renderDetailView() {
 	    var mLocation = document.getElementById("location");
 	    var notes = document.getElementById("notes");
 	    taskName.value = t.get("Title");
-	    startTime.value = t.get("date").toISOString();
+	    var d = t.get("date");
+	    if (d != undefined){
+		startTime.value = d.toISOString();
+	    }
 	    duration.value = t.get("duration");
-	    mLocation.value = t.get("location");
-	    notes.value = t.get("notes");
+	    var locVal = t.get("location");
+	    if(locVal != undefined){
+	        mLocation.value = t.get("location");
+	    }
+	    var noteVal = t.get("notes");
+	    if(noteVal != undefined){
+		notes.value = t.get("notes");
+	    }
 	},
 	error : function(error) {
 	    alert("ERROR! "+error.message);
+	}
+    });
+}
+function saveClick(){
+    var id = getParameterByName("objectId");
+    var query = new Parse.Query(Task);
+    query.get(id, {    
+	success : function(results) {
+	    task = results
+	    var startTime = document.getElementById("startTime");
+	    var taskName = document.getElementById("taskName");
+	    var duration = document.getElementById("duration");
+	    var mLocation = document.getElementById("location");
+	    var notes = document.getElementById("notes");
+	    task.set("Title", taskName.value);
+	    if(startTime.value){
+		task.set("date", new Date(startTime.value)); 
+	    }
+	    task.set("duration", parseInt(duration.value)); 
+	    task.set("notes", notes.value); 
+	    task.set("location", mLocation.value); 
+	    task.save(null, {
+		success : function(task) {
+		    history.back()
+		},
+		error : function(error) {
+		    alert("Error saving!! "+error.message);
+		}
+	    });
+	    },
+	error: function(error){
+	    alert("error finding!:"+error.message);
 	}
     });
 }
