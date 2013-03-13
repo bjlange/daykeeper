@@ -39,7 +39,7 @@ function renderLimbo() {
     var query = new Parse.Query(Task);
     
     query.lessThan("date",now);
-
+    query.equalTo("completed", false);
     query.find({
 	success : function(results) {
 	    Todos = results;
@@ -97,6 +97,7 @@ function renderUnscheduledList() {
     
     query.descending("createdAt");
     query.doesNotExist("date");
+    query.equalTo("completed", false);
     query.find({
 	success : function(results) {
 	    Todos = results;
