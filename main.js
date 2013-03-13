@@ -70,7 +70,7 @@ function renderLimbo() {
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
-		a.href = "detailview.html";
+		a.href = "detailview.html?objectId=" + Todos[i].id;
 		a.title = title
 		a.setAttribute("data-transition", "slide-in");
 		a.setAttribute("style","display:inline;");
@@ -114,7 +114,7 @@ function renderUnscheduledList() {
 		var a = document.createElement('a');
 		var span = document.createElement('span');
 		span.setAttribute("class", "chevron");
-		a.href = "detailview.html";
+		a.href = "detailview.html?objectID="+Todos[i].id;
 		a.title = title
 		a.setAttribute("data-transition", "slide-in");
 		a.setAttribute("style","display:inline;");
