@@ -24,6 +24,7 @@
 	    
 	    var task = new Task();
 	    task.set("Title", title);
+	    task.set("completed", false);
 	    
 	    task.save(null, {
 		success : function(task) {
