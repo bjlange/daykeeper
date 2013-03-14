@@ -230,7 +230,7 @@ function renderDetailView() {
 	    taskName.value = t.get("Title");
 	    var d = t.get("date");
 	    if (d != undefined){
-		startTime.value = d;
+		startTime.value = d.toISOString();
 	    }
 	    duration.value = t.get("duration");
 	    var locVal = t.get("location");
