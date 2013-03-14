@@ -461,7 +461,7 @@ function onFreeTimeClick(e){
 		    console.log("save success");
 		    console.log(history.length);
 		    //history.go(4);
-		    history.go(-2);
+		    history.back();
 		},
 		error : function(error) {
 		    alert("Error saving!! "+error.message);
