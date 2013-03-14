@@ -415,3 +415,37 @@ function press(e) {
 	});
     }
 }
+
+function onFreeTimeClick(e){
+    console.log(e);
+    var timestart = moment(e.getAttribute("data-timeS"));
+    var timeend = moment(e.getAttribute("data-timeE"));
+    var duration = timeend.diff(timestart, 'minutes');
+    var id = getParameterByName("objectId");
+    var datestart = new Date(timestart.format());
+    var query = new Parse.Query(Task);
+    console.log(timestart);
+    console.log(duration);
+    console.log(history);
+    query.get(id, {
+	success : function(task){
+	    console.log("got "+id+" successful. task:"+task);
+	    var savedate = new Date(timestart.format());
+	    console.log("saveDate:"+savedate);
+	    task.set("date", savedate);
+	    task.set("duration", duration);
+	    task.save(null, {
+		success : function(task) {
+		    console.log("save success");
+		    console.log(history.length);
+		    //history.go(4);
+		    history.go(-2);
+		},
+		error : function(error) {
+		    alert("Error saving!! "+error.message);
+		}});
+	}, error: function(error){
+	    alert("error getting id:"+id+" error.message:"+error.message);
+	}});
+    return true
+}
