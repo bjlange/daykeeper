@@ -23,8 +23,6 @@ window.onload = initialize;
 
 //Additional functions
 function masterRender() {
-    
-    console.log(window.location.pathname);
     var page = window.location.pathname.replace('/','');
     var render_map={'agenda.html':renderAgenda,
 		    'unscheduled.html':renderUnscheduledList,
@@ -35,7 +33,25 @@ function masterRender() {
 }
 
 function renderAgenda() {
+    // limbo badge code
     var now = new Date()
+    var limbo = document.getElementById('limboNum');
+    var query = new Parse.Query(Task);
+    query.lessThan("date",now);
+    query.equalTo("completed", false);
+    query.equalTo("appointment", false);
+    query.count({
+	success: function(count) {
+	    limbo.innerHTML=count;
+	},
+	error: function() {
+	    limbo.innerHTML="?";
+	}
+    });    
+    
+    // end limbo badge code
+
+
     var query = new Parse.Query(Task);
 
     //set moment settings for relative day
@@ -230,6 +246,25 @@ function saveClick(){
 }
 
 function renderUnscheduledList() {
+    // limbo badge code
+    var now = new Date()
+    var limbo = document.getElementById('limboNum');
+    var query = new Parse.Query(Task);
+    query.lessThan("date",now);
+    query.equalTo("completed", false);
+    query.equalTo("appointment", false);
+    query.count({
+	success: function(count) {
+	    limbo.innerHTML=count;
+	},
+	error: function() {
+	    limbo.innerHTML="?";
+	}
+    });    
+    
+    // end limbo badge code
+
+
     var query = new Parse.Query(Task);
     
     query.descending("createdAt");
