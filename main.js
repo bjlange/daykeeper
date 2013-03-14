@@ -33,10 +33,10 @@ function masterRender() {
 }
 function renderSchedView(){
     //could potentially get real times here. I'll just make up time here for now
-    var fDate1 = moment([2013, 3, 15, 10, 0, 0, 0]);
-    var fd1End = moment([2013, 3, 15, 12, 0, 0, 0]);
-    var fDate2 = moment([2013, 3, 15, 14, 30, 0, 0]);
-    var fd2End = moment([2013, 3, 15, 15, 0, 0, 0]) ;
+    var fDate1 = moment([2013, 2, 15, 10, 0, 0, 0]);
+    var fd1End = moment([2013, 2, 15, 12, 0, 0, 0]);
+    var fDate2 = moment([2013, 2, 15, 14, 30, 0, 0]);
+    var fd2End = moment([2013, 2, 15, 15, 0, 0, 0]) ;
     var ft1 = document.getElementById("freetimespan1");
     var ft2 = document.getElementById("freetimespan2");
     removeChildren(ft1);
@@ -260,7 +260,7 @@ function saveClick(){
 	    var notes = document.getElementById("notes");
 	    task.set("Title", taskName.value);
 	    if(startTime.value){
-		task.set("date", new Date(results.get("startTime"))); 
+		task.set("date", new Date(startTime.value)); 
 	    }
 	    task.set("duration", parseInt(duration.value)); 
 	    task.set("notes", notes.value); 
