@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="ratchet/ratchet.js"></script>
+    <script type="text/javascript" src="moment.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script>
+	function onFreeTimeClick(e){
+	    console.log(e);
+	    var timestart = moment(e.getAttribute("data-timeS"));
+	    var duration = parseInt(e.getAttribute("data-duration"));
+	    console.log(timestart);
+	    console.log(duration);
+
+	}
+    </script>
   </head>
 
   <body>
@@ -27,10 +41,9 @@
 	  </a>
 	</li>
 	<li class="free">
-	  <a href="detailview.html">
+	  <a id="fta1" href="#" onclick="onFreeTimeClick(this)">
 	    Free Time
-	    <span class="rightorient"> 10:00 am  -12:00 pm </span>
-
+	    <span id="freetimespan1" class="rightorient"> 10:00 am  -12:00 pm </span>
 	  </a>
 	</li>
 	<li>
@@ -58,10 +71,9 @@
 	</li>
 
 	<li class="free">
-	  <a href="detailview.html">
+	  <a id="fta2" href="#">
 	    Free Time
-	    <span class="rightorient"> 2:30 pm - 5:00 pm  </span>
-
+	    <span id="freetimespan2" class="rightorient"> 2:30 pm - 5:00 pm  </span>
 	  </a>
 	</li>
 
