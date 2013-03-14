@@ -41,10 +41,12 @@ function renderSchedView(){
     var ft2 = document.getElementById("freetimespan2");
     removeChildren(ft1);
     removeChildren(ft2);
-    var t1spanstr = fDate1.format("h:mm a - "+fd1End.format("h:mm a"));
+    
+    
+    var t1spanstr = fDate1.format("h:mm a - ")+fd1End.format("h:mm a");
     console.log(t1spanstr);
     ft1.appendChild(document.createTextNode(t1spanstr));
-    var t2spanstr = fDate2.format("h:mm a - "+fd2End.format("h:mm a"));
+    var t2spanstr = fDate2.format("h:mm a - ")+fd2End.format("h:mm a");
     console.log(t2spanstr);
     ft2.appendChild(document.createTextNode(t2spanstr));
     var fta1 = document.getElementById("fta1");
