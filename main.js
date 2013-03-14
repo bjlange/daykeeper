@@ -10,16 +10,21 @@ Array.prototype.remove = function(from, to) {
 };
 
 function initialize() {
+    
     // attach a listener for push transitions, and run necessary render functions
+    // window.addEventListener('push', function () {console.log("push event", window.location.pathname);});
+    // window.addEventListener('popstate', function () {console.log("popstate event", window.location.pathname);});
+    // masterRender();
     window.addEventListener('push', masterRender);
     window.addEventListener('popstate', masterRender);
-    masterRender();
 }
 //On page load, run initialize
 window.onload = initialize;
 
 //Additional functions
 function masterRender() {
+    
+    console.log(window.location.pathname);
     var page = window.location.pathname.replace('/','');
     var render_map={'agenda.html':renderAgenda,
 		    'unscheduled.html':renderUnscheduledList,
