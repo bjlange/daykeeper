@@ -13,37 +13,13 @@
   <body>
     <script type="text/javascript">
     window.onload = initialize;
-
-    function press (e) {
-	var evt = e || window.event;
-	
-	if(evt.keyCode == 13){
-	    
-	    var title = document.getElementById("quickadd").value;
-	    
-	    var task = new Task();
-	    task.set("Title", title);
-	    task.set("completed", false);
-	    
-	    task.save(null, {
-		success : function(task) {
-		    //alert("Task added! :)");
-		    renderUnscheduledList();
-		    document.getElementById("quickadd").value ="";
-		    
-		},
-		error : function(error) {
-		    alert("ERROR!!");
-		}
-	    });
-	}
-    }
+      
     </script>
 
 
   <header class="bar-title">
     <a class="button" href="limbo.html" data-transition="slide-out">
-      Limbo <span class="count">0</span>
+      Limbo <span id="limboNum" class="count">0</span>
     </a>
     <h1 class="title">Daykeeper</h1>
     <a class="button hidden" href="#">
@@ -51,7 +27,7 @@
     </a>
   </header>
   <div class="bar-standard bar-header-secondary">
-    <input id="quickadd" style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" onKeyDown="return press (event);" />
+    <input id="quickadd" style="height: 32px; width: 80%;" type="text" placeholder="Quick Add" onKeyDown="return press(event);" />
     <a href="agenda.html" data-transition="fade" style="width: 10%;font-family:FontAwesome;" class="button">&#xf073;</a>
   </div>
   <div class="content">

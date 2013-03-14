@@ -10,10 +10,13 @@ Array.prototype.remove = function(from, to) {
 };
 
 function initialize() {
+    
     // attach a listener for push transitions, and run necessary render functions
+    // window.addEventListener('push', function () {console.log("push event", window.location.pathname);});
+    // window.addEventListener('popstate', function () {console.log("popstate event", window.location.pathname);});
+    // masterRender();
     window.addEventListener('push', masterRender);
     window.addEventListener('popstate', masterRender);
-    masterRender();
 }
 //On page load, run initialize
 window.onload = initialize;
@@ -51,7 +54,25 @@ function renderSchedView(){
 }
 
 function renderAgenda() {
+    // limbo badge code
     var now = new Date()
+    var limbo = document.getElementById('limboNum');
+    var query = new Parse.Query(Task);
+    query.lessThan("date",now);
+    query.equalTo("completed", false);
+    query.equalTo("appointment", false);
+    query.count({
+	success: function(count) {
+	    limbo.innerHTML=count;
+	},
+	error: function() {
+	    limbo.innerHTML="?";
+	}
+    });    
+    
+    // end limbo badge code
+
+
     var query = new Parse.Query(Task);
 
     //set moment settings for relative day
@@ -246,6 +267,25 @@ function saveClick(){
 }
 
 function renderUnscheduledList() {
+    // limbo badge code
+    var now = new Date()
+    var limbo = document.getElementById('limboNum');
+    var query = new Parse.Query(Task);
+    query.lessThan("date",now);
+    query.equalTo("completed", false);
+    query.equalTo("appointment", false);
+    query.count({
+	success: function(count) {
+	    limbo.innerHTML=count;
+	},
+	error: function() {
+	    limbo.innerHTML="?";
+	}
+    });    
+    
+    // end limbo badge code
+
+
     var query = new Parse.Query(Task);
     
     query.descending("createdAt");
@@ -334,4 +374,32 @@ function getEndTime(todo){
     var endtime = new Date(todo.get("date").getTime() + dur*60000);
     
     return endtime;
+}
+
+function press(e) {
+    var evt = e || window.event;
+
+
+    if(evt.keyCode == 13){
+	console.log('enter key');    
+
+	var title = document.getElementById("quickadd").value;
+	
+	var task = new Task();
+	task.set("Title", title);
+	task.set("completed", false);
+	task.set("appointment", false);
+	
+	task.save(null, {
+	    success : function(task) {
+		//alert("Task added! :)");
+		renderUnscheduledList();
+		document.getElementById("quickadd").value ="";
+		
+	    },
+	    error : function(error) {
+		alert("ERROR!!");
+	    }
+	});
+    }
 }
