@@ -279,6 +279,26 @@ function saveClick(){
 	}
     });
 }
+function deleteClick(){
+    var id = getParameterByName("objectId");
+    var query = new Parse.Query(Task);
+    query.get(id, {    
+	success : function(results) {
+	    task = results
+	    task.destroy({
+		success : function(task) {
+		    history.back()
+		},
+		error : function(error) {
+		    alert("Error deleting the task!! "+error.message);
+		}
+	    });
+	    },
+	error: function(error){
+	    alert("error finding!:"+error.message);
+	}
+    });
+}
 
 function renderUnscheduledList() {
     // limbo badge code
