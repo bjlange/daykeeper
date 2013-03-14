@@ -14,10 +14,34 @@
 	function onFreeTimeClick(e){
 	    console.log(e);
 	    var timestart = moment(e.getAttribute("data-timeS"));
-	    var duration = parseInt(e.getAttribute("data-duration"));
+	    var timeend = moment(e.getAttribute("data-timeE"));
+	    var duration = timeend.diff(timestart, 'minutes');
+	    var id = getParameterByName("objectId");
+	    var datestart = new Date(timestart.format());
+	    var query = new Parse.Query(Task);
 	    console.log(timestart);
 	    console.log(duration);
-
+	    console.log(history);
+	    query.get(id, {
+		success : function(task){
+		    console.log("got "+id+" successful. task:"+task);
+		    var savedate = new Date(timestart.format());
+		    console.log("saveDate:"+savedate);
+		    task.set("date", savedate);
+		    task.set("duration", duration);
+		    task.save(null, {
+			success : function(task) {
+			    console.log("save success");
+			    console.log(history.length);
+			    //history.go(4);
+			    },
+			    error : function(error) {
+				alert("Error saving!! "+error.message);
+			    }});
+		    }, error: function(error){
+		    alert("error getting id:"+id+" error.message:"+error.message);
+	    }});
+	    return true
 	}
     </script>
   </head>
@@ -30,7 +54,7 @@
     <header class="bar-title">
       
       <h1 class="title">Daykeeper</h1>
-      <a class="button" onclick="history.back()">Back</a>
+      <a class="button"  onclick="history.back()">Back</a>
     </header>
     <div class="content">
       <ul class="list">
@@ -41,9 +65,9 @@
 	  </a>
 	</li>
 	<li class="free">
-	  <a id="fta1" href="#" onclick="onFreeTimeClick(this)">
+	  <a id="fta1" href="#" onclick="return onFreeTimeClick(this);">
 	    Free Time
-	    <span id="freetimespan1" class="rightorient"> 10:00 am  -12:00 pm </span>
+	    <span id="freetimespan1" class="rightorient"> </span>
 	  </a>
 	</li>
 	<li>
@@ -71,9 +95,9 @@
 	</li>
 
 	<li class="free">
-	  <a id="fta2" href="#">
+	  <a id="fta2" href="#" onclick="return onFreeTimeClick(this);">
 	    Free Time
-	    <span id="freetimespan2" class="rightorient"> 2:30 pm - 5:00 pm  </span>
+	    <span id="freetimespan2" class="rightorient"></span>
 	  </a>
 	</li>
 

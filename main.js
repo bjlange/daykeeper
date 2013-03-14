@@ -37,20 +37,28 @@ function renderSchedView(){
     var fd1End = moment([2013, 3, 15, 12, 0, 0, 0]);
     var fDate2 = moment([2013, 3, 15, 14, 30, 0, 0]);
     var fd2End = moment([2013, 3, 15, 15, 0, 0, 0]) ;
-    console.log("fDate1: "+fDate1.format());
-    console.log("fd1End: "+fd1End.format());
-    console.log("fDate2: "+fDate2.format());
-    console.log("fd2End: "+fd2End.format());
     var ft1 = document.getElementById("freetimespan1");
     var ft2 = document.getElementById("freetimespan2");
-    ft1.value = fDate1.format("h:mm a - "+fd1End.format("h:mm a"));
-    ft2.value = fDate2.format("h:mm a - "+fd2End.format("h:mm a"));
+    removeChildren(ft1);
+    removeChildren(ft2);
+    var t1spanstr = fDate1.format("h:mm a - "+fd1End.format("h:mm a"));
+    console.log(t1spanstr);
+    ft1.appendChild(document.createTextNode(t1spanstr));
+    var t2spanstr = fDate2.format("h:mm a - "+fd2End.format("h:mm a"));
+    console.log(t2spanstr);
+    ft2.appendChild(document.createTextNode(t2spanstr));
     var fta1 = document.getElementById("fta1");
     var fta2 = document.getElementById("fta2");
     fta1.setAttribute("data-timeS", fDate1.format());
     fta1.setAttribute("data-timeE", fd1End.format());
-    fta2.setAttribute("data-timeS", fDate1.format());
+    fta2.setAttribute("data-timeS", fDate2.format());
     fta2.setAttribute("data-timeE", fd2End.format());
+}
+
+function removeChildren(myNode){
+    while (myNode.firstChild) {
+	myNode.removeChild(myNode.firstChild);
+    }
 }
 
 function renderAgenda() {
@@ -213,10 +221,12 @@ function renderDetailView() {
 	    var duration = document.getElementById("duration");
 	    var mLocation = document.getElementById("location");
 	    var notes = document.getElementById("notes");
+	    var scheduler = document.getElementById("schedulerlink");
+	    scheduler.setAttribute("href", "scheduler.html?objectId="+id);
 	    taskName.value = t.get("Title");
 	    var d = t.get("date");
 	    if (d != undefined){
-		startTime.value = d.toISOString();
+		startTime.value = d;
 	    }
 	    duration.value = t.get("duration");
 	    var locVal = t.get("location");
@@ -246,7 +256,7 @@ function saveClick(){
 	    var notes = document.getElementById("notes");
 	    task.set("Title", taskName.value);
 	    if(startTime.value){
-		task.set("date", new Date(startTime.value)); 
+		task.set("date", new Date(results.get("startTime"))); 
 	    }
 	    task.set("duration", parseInt(duration.value)); 
 	    task.set("notes", notes.value); 
