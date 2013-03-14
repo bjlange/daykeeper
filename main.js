@@ -202,6 +202,8 @@ function renderLimbo() {
 		li.appendChild(a);
 		li.appendChild(span);
 		ul.appendChild(li);
+
+		cb.addEventListener('change',completeTask);
 		
 		//.innerHTML = "<li><input type=\"checkbox\" /> <a href=\"task_detail.html\* data-transition=\"slide-in\" style=\"display:inline;\">"+title+"</a><span class=\"chevron\"></li>";
 	    }
