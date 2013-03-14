@@ -319,3 +319,31 @@ function getEndTime(todo){
     
     return endtime;
 }
+
+function press(e) {
+    var evt = e || window.event;
+
+
+    if(evt.keyCode == 13){
+	console.log('enter key');    
+
+	var title = document.getElementById("quickadd").value;
+	
+	var task = new Task();
+	task.set("Title", title);
+	task.set("completed", false);
+	task.set("appointment", false);
+	
+	task.save(null, {
+	    success : function(task) {
+		//alert("Task added! :)");
+		renderUnscheduledList();
+		document.getElementById("quickadd").value ="";
+		
+	    },
+	    error : function(error) {
+		alert("ERROR!!");
+	    }
+	});
+    }
+}
